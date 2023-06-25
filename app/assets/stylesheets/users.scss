@@ -1,3 +1,209 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.field {
+  margin-bottom: 1em;
+  display: inline-block; /* フィールドをインラインに */
+}
+
+.field label {
+  color: #FFFFFF; /* ラベルのテキスト色 */
+  font-size: 1.2em; /* ラベルのフォントサイズ */
+}
+
+.field input {
+  width: 200px; /* 入力フィールドの幅を誕生日が入るくらいに縮める */
+  padding: 0.5em; /* 入力フィールドのパディング */
+  border: 1px solid #444444; /* 入力フィールドの枠線 */
+  border-radius: 5px; /* 入力フィールドの角丸 */
+  color: #FFFFFF; /* 入力テキストの色 */
+  background-color: #222222; /* 入力フィールドの背景色 */
+}
+
+.actions {
+  text-align: center; /* ボタンを中央に配置 */
+}
+
+.actions input[type="submit"] {
+  padding: 0.5em 1em; /* ボタンのパディング */
+  border: none; /* ボタンの枠線をなくす */
+  border-radius: 5px; /* ボタンの角丸 */
+  color: #FFFFFF; /* ボタンのテキスト色 */
+  background-color: #15B0C2; /* ボタンの背景色をシビュラシステムの色に */
+  cursor: pointer; /* ホバー時のカーソル */
+}
+
+.actions input[type="submit"]:hover {
+  background-color: #0056b3; /* ホバー時のボタンの背景色 */
+}
+
+.title {
+  color: #15B0C2;
+}
+
+.result {
+  text-align: left;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+//----------------------------------------
+//  テキスト本体に関連するスタイル
+//----------------------------------------
+.text {
+	font-size: clamp(18px, 4vw, 40px);
+	font-weight: bold;
+}
+
+//----------------------------------------
+//  アニメーションに関連するスタイル
+//----------------------------------------
+.sl-txtNz {
+	.sl-txtInr {
+		display: inline-block;
+		letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0); // 色の初期値を完全透明に設定
+	}
+	&--active {
+		animation: sl_txt_DNoiseBox linear 0.2s 6;
+		.sl-txtInr {
+			&--dark {
+				animation-name: sl_txt_DNoise_dark;
+			}
+			&--light {
+				animation-name: sl_txt_DNoise_light;
+			}
+			animation-name: sl_txt_DNoise_dark;
+			animation-duration: 0.3s;
+			animation-timing-function: linear;
+			animation-fill-mode: forwards;
+			@for $i from 2 through 32 {
+				&--#{$i} {
+					animation-delay: calc((#{$i} - 1) * 0.05s);
+				}
+			}
+		}
+	}
+}
+@keyframes sl_txt_DNoiseBox {
+	0% {
+		transform: translate(0.04em, 0.04em);
+	}
+	19.9% {
+		transform: translate(0.04em, 0.04em);
+	}
+	20% {
+		transform: translate(-0.04em, -0.04em);
+	}
+	39.9% {
+		transform: translate(-0.04em, -0.04em);
+	}
+	40% {
+		transform: translate(0.04em, -0.04em);
+	}
+	59.9% {
+		transform: translate(0.04em, -0.04em);
+	}
+	60% {
+		transform: translate(-0.04em, 0.04em);
+	}
+	79.9% {
+		transform: translate(-0.04em, 0.04em);
+	}
+	80% {
+		transform: translate(0, 0);
+	}
+	100% {
+		transform: translate(0, 0);
+	}
+}
+
+$light_A: rgba(255, 80, 170, 0.7);
+$light_B: rgba(20, 150, 255, 0.7);
+$dark_A: rgba(255, 0, 255, 0.5);
+$dark_B: rgba(0, 255, 255, 0.5);
+
+@keyframes sl_txt_DNoise_dark {
+	0% {
+		color: rgba(255, 255, 255, 0);
+		text-shadow: 0 0 $dark_A, 0 0 $dark_B;
+	}
+	19.9% {
+		color: rgba(255, 255, 255, 0.3);
+		text-shadow: 0 0 $dark_A, 0 0 $dark_B;
+	}
+	20% {
+		color: rgba(255, 255, 255, 0.6);
+		text-shadow: -0.15em 0 $dark_A, 0.15em 0 $dark_B;
+	}
+	39.9% {
+		color: rgba(255, 255, 255, 0.6);
+		text-shadow: -0.15em 0 $dark_A, 0.15em 0 $dark_B;
+	}
+	40% {
+		color: rgba(255, 255, 255, 0.6);
+		text-shadow: -0.3em 0 $dark_A, 0.3em 0 $dark_B;
+	}
+	59.9% {
+		color: rgba(255, 255, 255, 0.6);
+		text-shadow: -0.3em 0 $dark_A, 0.3em 0 $dark_B;
+	}
+	60% {
+		color: rgba(255, 255, 255, 0.3);
+		text-shadow: -0.15em 0 $dark_A, 0.15em 0 $dark_B;
+	}
+	79.9% {
+		color: rgba(255, 255, 255, 0.3);
+		text-shadow: -0.15em 0 $dark_A, 0.15em 0 $dark_B;
+	}
+	80% {
+		color: rgba(255, 255, 255, 1);
+		text-shadow: 0 0 $dark_A, 0 0 $dark_B;
+	}
+	100% {
+		color: #23b8c5;
+		text-shadow: 0 0 $dark_A, 0 0 $dark_B;
+	}
+}
+@keyframes sl_txt_DNoise_light {
+	0% {
+		color: rgba(0, 0, 0, 0);
+		text-shadow: 0 0 $light_A, 0 0 $light_B;
+	}
+	19.9% {
+		color: rgba(0, 0, 0, 0.3);
+		text-shadow: 0 0 $light_A, 0 0 $light_B;
+	}
+	20% {
+		color: rgba(0, 0, 0, 0.6);
+		text-shadow: -0.15em 0 $light_A, 0.15em 0 $light_B;
+	}
+	39.9% {
+		color: rgba(0, 0, 0, 0.6);
+		text-shadow: -0.15em 0 $light_A, 0.15em 0 $light_B;
+	}
+	40% {
+		color: rgba(0, 0, 0, 0.6);
+		text-shadow: -0.3em 0 $light_A, 0.3em 0 $light_B;
+	}
+	59.9% {
+		color: rgba(0, 0, 0, 0.6);
+		text-shadow: -0.3em 0 $light_A, 0.3em 0 $light_B;
+	}
+	60% {
+		color: rgba(0, 0, 0, 0.3);
+		text-shadow: -0.15em 0 $light_A, 0.15em 0 $light_B;
+	}
+	79.9% {
+		color: rgba(0, 0, 0, 0.3);
+		text-shadow: -0.15em 0 $light_A, 0.15em 0 $light_B;
+	}
+	80% {
+		color: rgba(0, 0, 0, 1);
+		text-shadow: 0 0 $light_A, 0 0 $light_B;
+	}
+	100% {
+		color: #23b8c5;
+		text-shadow: 0 0 $light_A, 0 0 $light_B;
+	}
+}

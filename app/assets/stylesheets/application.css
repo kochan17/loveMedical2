@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+ body {
+  background-color: #000000; /* ダークテーマの背景色 */
+  color: #FFFFFF; /* テキストの色 */
+  font-family: 'Arial', sans-serif; /* モダンなフォント */
+  text-align: center; /* テキストを中央に配置 */
+}

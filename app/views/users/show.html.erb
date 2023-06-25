@@ -1,4 +1,14 @@
-<h1>潜在的なあなたの運命の人</h1>
+<main class="container">
+    <section class="section">
+        <h1 class="title sl-txtNz" data-color="dark" data-type="random">
+          潜在的なあなたの運命の人
+        </h1>
+    </section>
 
-<p>Your birthday: <%= @user.birthday %></p>
-<p>Your destiny partner: <%= @user.partner_proposal %></p>
+<p>Your birthday: <%= @user.birthday.strftime("%Y/%m/%d") %></p>
+
+<div class="result">
+  <p><%= @user.partner_proposal.gsub("\n", "<br>").html_safe %></p>
+</div>
+
+</main>
