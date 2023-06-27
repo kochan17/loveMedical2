@@ -8,22 +8,23 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
-// 以下に共有されたJavaScriptを追加します
-document.addEventListener('DOMContentLoaded', (event) => {
-  function sl_txt(className) {
-    if (document.getElementsByClassName(className).length > 0) {
-      const targets = document.getElementsByClassName(className);
-      const options = { rootMargin: "0px 0px -25% 0px" };
-      const setAnimationClass = (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add(className + "--active");
-          } else {
-            entry.target.classList.remove(className + "--active");
-          }
-        });
-      };
-      for (let i = 0; i < targets.length; i++) {
+function sl_txt(className) {
+  const targets = document.getElementsByClassName(className);
+
+  if (targets.length === 0) return;  // If there are no elements with the given class, end the function early
+
+  const options = { rootMargin: "0px 0px -25% 0px" };
+  const setAnimationClass = (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add(className + "--active");
+      } else {
+        entry.target.classList.remove(className + "--active");
+      }
+    });
+  };
+
+  for (let i = 0; i < targets.length; i++) {
         const typeData = targets[i].getAttribute("data-type");
         const colorData = targets[i].getAttribute("data-color");
         const colorArray = ["light", "dark"];
@@ -70,9 +71,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const observer = new IntersectionObserver(setAnimationClass, options);
         observer.observe(targets[i]);
       }
-    } else {
-      alert("「" + className + "」というclass名をもつ要素が存在しません。");
-    }
-  }
+}
+
+document.addEventListener('turbolinks:load', function() {
   sl_txt("sl-txtNz");
 });
